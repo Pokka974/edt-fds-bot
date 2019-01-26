@@ -79,9 +79,18 @@ bot.on('message', message =>{
                                 let salle = ev.location;
                                 let description = ev.description;
 
-                                chan.send('\t\t' + startHour + '-' + endHour +'\n'
+                                /*chan.send('\t\t' + startHour + '-' + endHour +'\n'
                                                 +'\t\t **UE :** ' + module +'\n'
-                                                    +'\t\t **Salle :** ' + salle);                            
+                                                    +'\t\t **Salle :** ' + salle);  */
+                                                    
+                                let embed  = new Discord.RichEmbed()
+                                    .setTitle(startHour + '-' + endHour)
+                                    .setDescription(module)
+                                    .addField('Salle', salle, true)
+                                    .addField('Description', ev.description)
+                                    .setColor('0x#ff0000');
+
+                                chan.sendEmbed(embed);                           
                             } 
                         }
                     }
