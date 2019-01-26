@@ -118,8 +118,7 @@ bot.on('message', message =>{
     
     if(message.content === '!helpedt'){
 
-        message.channel.send('`!edt [groupe] [ajouter un/plusieurs jours]`\n
-                        **EXEMPLE :** !edt a ++ --> EDT du groupe A dans 2 jours');
+        message.channel.send('!edt [groupe] [ajouter un/plusieurs jours]\n**EXEMPLE :** !edt a ++ --> EDT du groupe A dans 2 jours');
     }
         
 });
