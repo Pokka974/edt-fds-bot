@@ -88,7 +88,8 @@ bot.on('message', message =>{
                                     .setDescription(module)
                                     .addField('Salle', salle, true)
                                     .addField('Description', ev.description)
-                                    .setColor('0x#ff0000');
+                                    .setColor('0x#ff0000')
+                                    .setFooter(day[0] + ' ' + day[1] + ' ' + day[2]);
 
                                 chan.sendEmbed(embed);                           
                             } 
