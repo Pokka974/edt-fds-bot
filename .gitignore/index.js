@@ -7,11 +7,7 @@ const grpB = 'https://proseconsult.umontpellier.fr/jsp/custom/modules/plannings/
 const grpC = 'https://proseconsult.umontpellier.fr/jsp/custom/modules/plannings/direct_cal.jsp?data=5e3670a1af6484011850addbbf026abb1801c9e8db0d8cf6680e09872cce84f9e0fa50826f0818af16cfc8af7aef7fd1906f45af276f59aec18424f8595af9f9a6b28cb855546dc78f432a5cf2dd357c10c1ea526314239ac6a0b3f5de1b13ef';
 const grpD = 'https://proseconsult.umontpellier.fr/jsp/custom/modules/plannings/direct_cal.jsp?data=5e3670a1af6484011850addbbf026abb1801c9e8db0d8cf6680e09872cce84f9e0fa50826f0818af16cfc8af7aef7fd1906f45af276f59aec18424f8595af9f9a6b28cb855546dc78f432a5cf2dd357c07aa135b8cfb2087';
 const grpE = 'https://proseconsult.umontpellier.fr/jsp/custom/modules/plannings/direct_cal.jsp?data=5e3670a1af6484011850addbbf026abb1801c9e8db0d8cf6680e09872cce84f9e0fa50826f0818af16cfc8af7aef7fd1906f45af276f59aec18424f8595af9f9a6b28cb855546dc78f432a5cf2dd357cabecce7ff5f6f2ab';
-const grpA2 = 'https://proseconsult.umontpellier.fr/jsp/custom/modules/plannings/direct_cal.jsp?data=5e3670a1af6484011850addbbf026abb1801c9e8db0d8cf6680e09872cce84f9e0fa50826f0818af16cfc8af7aef7fd1906f45af276f59aec18424f8595af9f9a6b28cb855546dc78f432a5cf2dd357c62cb86ec8c16d178';
-const grpB2 = 'https://proseconsult.umontpellier.fr/jsp/custom/modules/plannings/direct_cal.jsp?data=5e3670a1af6484011850addbbf026abb1801c9e8db0d8cf6680e09872cce84f9e0fa50826f0818af16cfc8af7aef7fd1906f45af276f59aec18424f8595af9f9a6b28cb855546dc78f432a5cf2dd357cb2303500e1f29a3a';
-const grpC2 = 'https://proseconsult.umontpellier.fr/jsp/custom/modules/plannings/direct_cal.jsp?data=5e3670a1af6484011850addbbf026abb1801c9e8db0d8cf6680e09872cce84f9e0fa50826f0818af16cfc8af7aef7fd1906f45af276f59aec18424f8595af9f9a6b28cb855546dc78f432a5cf2dd357c217a27bacc66eb60';
 
-var grp;
 
 bot.on('ready', function(){
     console.log('Ready to use!');
@@ -22,11 +18,9 @@ bot.on('message', message =>{
     var chan = message.channel;
 
     if(message.content.split(' ')[0] === '!edt'){
-
         var arg1 = message.content.split(' ')[1].toUpperCase();
-        var arg2 = message.content.split(' ').length > 1 ? message.content.split(' ')[2] : message.content.split(' ')[1];
+        var arg2 = message.content.split(' ').length > 1 ? message.content.split(' ')[2] : '';
 
-        
         //console.log('Arg 1 = ' + arg1 + ' Arg 2 : ' + arg2);
         var nbDeJours = 0;
 
@@ -42,52 +36,11 @@ bot.on('message', message =>{
 
             console.log('Groupe selectionne : ' + arg1);
 
-            
-            message.author.roles.forEach(function(role){
-
-                switch (role) {
-                    case 'L1-Groupe-A':
-                        grp = grpA;
-                        break;
-                    
-                    case 'L1-Groupe-B':
-                        grp = grpB;
-                        break;
-
-                    case 'L1-Groupe-C':
-                        grp = grpC;
-                        break;
-
-                    case 'L1-Groupe-D':
-                        grp = grpD;
-                        break;
-
-                    case 'L1-Groupe-E':
-                        grp = grpE;
-                        break;
-
-                    case 'L2-Groupe-A':
-                        grp = grpA2;
-                        break;
-
-                    case 'L2-Groupe-B':
-                        grp = grpB;
-                        break;
-
-                    case 'L2-Groupe-C':
-                        grp = grpC;
-                        break;
-
-                    default:
-                        grp = arg1 == 'A' ? grpA : 
-                                arg1 == 'B' ? grpB :
-                                    arg1 == 'C' ? grpC :
-                                        arg1 == 'D' ? grpD :
-                                            grpE;
-                        break;
-                }
-            });
-
+            var grp = arg1 == 'A' ? grpA : 
+                    arg1 == 'B' ? grpB :
+                        arg1 == 'C' ? grpC :
+                            arg1 == 'D' ? grpD :
+                                grpE;
 
             try {
 
@@ -135,12 +88,9 @@ bot.on('message', message =>{
                                     .setDescription(module)
                                     .addField('Salle', salle, true)
                                     .addField('Description', ev.description)
-                                    .setColor('0x#ff0000')
-                                    .setFooter(day[0] + ' ' + day[1] + ' ' + day[2]);
-                                    
+                                    .setColor('0x#ff0000');
 
-                                chan.sendEmbed(embed);
-                                ;
+                                chan.sendEmbed(embed);                           
                             } 
                         }
                     }
@@ -151,7 +101,7 @@ bot.on('message', message =>{
             }
         } catch (error) {
             console.log(error);
-            chan.send("Aucun groupe n'a été trouvé");
+            chan.send("Aucun groupe n'a été sélectionné :/");
         } 
     }
 
@@ -174,7 +124,7 @@ bot.on('message', message =>{
             }
         }));
     }
-
+    
     if(message.content === '!helpedt'){
 
         message.channel.send('!edt [groupe] [ajouter un/plusieurs jours]\n**EXEMPLE :** !edt a ++ --> EDT du groupe A dans 2 jours');
