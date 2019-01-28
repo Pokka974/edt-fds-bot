@@ -38,7 +38,7 @@ module.exports = {
                             let description = ev.description;
                                                 
                             var embed  = new Discord.RichEmbed()
-                                .setTitle('\n:calendar_spiral: **' + day[0] + ' ' + day[1] + ' ' + day[2]+'** \n' + startHour + '-' + endHour)
+                                .setTitle('\n:calendar_spiral: ' + startHour + '-' + endHour)
                                 .setDescription(module)
                                 .addField('Salle', salle, true)
                                 .addField('Description', ev.description)
@@ -105,7 +105,7 @@ module.exports = {
                             let description = ev.description;
                                                 
                             var embed2  = new Discord.RichEmbed()
-                                .setTitle('\n:calendar_spiral: **' + day[0] + ' ' + day[1] + ' ' + day[2]+'** \n' + startHour + '-' + endHour)
+                                .setTitle('\n:calendar_spiral: **' + startHour + '-' + endHour)
                                 .setDescription(module)
                                 .addField('Salle', salle, true)
                                 .addField('Description', ev.description)
@@ -120,7 +120,7 @@ module.exports = {
 
                 if(!courseFounded){
                     let embed = new Discord.RichEmbed()
-                            .setTitle('\n:calendar_spiral: **' + day[0] + ' ' + day[1] + ' ' + day[2]+'**')
+                            .setTitle('\n:calendar_spiral: ' + day[0] + ' ' + day[1] + ' ' + day[2]+'**')
                             .addField('No Results', 'Aucun cours trouvé pour la date indiquée et le groupe indiqué')
                             .setColor('0x#ff0000')
                             .setFooter(day[0] + ' ' + day[1] + ' ' + day[2]);
