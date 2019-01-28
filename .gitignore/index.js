@@ -21,8 +21,6 @@ bot.on('message', message =>{
         var Command = utils.Command;
 
         let com = new Command(message);
-        let arg1 = com.arg1;
-        let arg2 = com.arg2;
 
         try {
             if(com.dataNumber < 3)                                  // !edt OU !edt ++ OU !edt D
@@ -39,7 +37,7 @@ bot.on('message', message =>{
        
     }
 
-    if(message.content === '!manageMembers'){
+    /*if(message.content === '!manageMembers'){
 
         message.guild.roles.forEach((function(role){
 
@@ -57,7 +55,7 @@ bot.on('message', message =>{
                 });
             }
         }));
-    }
+    }*/
 
     if(message.content === '!helpedt'){
 
@@ -66,5 +64,5 @@ bot.on('message', message =>{
         
 });
 
-
-bot.login(process.env.TOKEN);
+bot.login('MzU5MjUwMDUxMDIyOTc5MDcz.Dy3aTg.wUpXSjTywwv0Scx4klKA2SiTFks');
+//bot.login(process.env.TOKEN);

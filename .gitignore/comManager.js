@@ -12,14 +12,19 @@ const grpC2 = 'https://proseconsult.umontpellier.fr/jsp/custom/modules/plannings
 function Command(message){
 
     this.dataNumber = message.content.split(' ').length;
-    console.log(this.dataNumber);
-    this.arg1 = this.dataNumber > 1 ?  message.content.split(' ')[1].toUpperCase() : "";
-    console.log(this.arg1);
-    this.arg2 = this.dataNumber > 2 ?  message.content.split(' ')[2].toUpperCase() : "";
-    console.log(this.arg2);
-    this.roles = message.member.roles;
-    let url = null;
+    console.log('Nombre d\'arguments : ' + this.dataNumber);
 
+    this.arg1 = this.dataNumber > 1 ?  message.content.split(' ')[1].toUpperCase() : "";
+    console.log('Argument 1 : ' + this.arg1);
+
+    this.arg2 = this.dataNumber > 2 ?  message.content.split(' ')[2].toUpperCase() : "";
+    console.log('Argument 2 : ' + this.arg2);
+
+    this.roles = message.member.roles;
+
+    var url = null;
+
+    // SI UN GROUPE SPECIFIQUE A ETE DONNE :
     if(this.arg1 === 'A' || this.arg1 === 'B' || this.arg1 === 'C' || this.arg1 === 'D' || this.arg1 === 'E' || this.arg1 === 'A2' || this.arg1 === 'B2' || this.arg1 === 'C2'){
 
         console.log("UN GROUPE EST CHOISI");
@@ -32,8 +37,10 @@ function Command(message){
                                             this.arg1 == 'B2' ? grpB2 :
                                                 this.arg1 == 'C2' ? grpC2 : ''; 
     }
-    else
+    else //SI AUCUN GROUPE PRECISE, IL FAUT CHERCHER UN ROLE :
     {
+        console.log('----- Pas de groupe précisé, je cherche un groupe ...');
+
         this.roles.forEach(function(element){
             
                 switch (element.name) {
@@ -68,11 +75,13 @@ function Command(message){
                     case 'L2-Groupe-C':
                         url = grpC2;
                         break;
-                }
-
-                this.grp = url;
+                }   
         });
+
+        this.grp = url;
     }
+
+    console.log('GROUPE : ' + this.grp);
 }
 
 
