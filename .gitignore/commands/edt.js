@@ -6,17 +6,19 @@ module.exports = {
 
     todayEdt : function(msg, url, optionalArg){
         try {
-            console.log('------START FUNCTION TODAYEDT');
+            console.log('------ START FUNCTION TODAYEDT');
             var today = new Date();
 
             var todayString = today.toDateString().split(' ')[1] + ' ' + today.toDateString().split(' ')[2] + ' 2019';
-            console.log('-----> ' + todayString);
+            console.log('-----> Date d\'aujourd\'hui : ' + todayString);
 
             let day = today.toString().split(' ');
+
             let courseFounded = false;
 
             ical.fromURL(url, {}, function(err, data) {
 
+                console.log('----- Recherche en cours dans l\'edt : ' + url + ' \n----- Pour la date du ' + todayString);
                 for (var k in data){
                     if (data.hasOwnProperty(k)) {
 
@@ -26,6 +28,7 @@ module.exports = {
 
                         if(todayString === iDate){ //Si il trouve un Edt pour le jour sélectionné
                             
+                            console.log('----- Un cours a été trouvé !');
                             courseFounded = true;
                             let start = ev.start.toDateString().split('GMT')[0];
                             let startHour = ev.start.toString().split(' ')[4];
@@ -36,7 +39,8 @@ module.exports = {
                             let module = ev.summary.toString().split(' ')[0];
                             let salle = ev.location;
                             let description = ev.description;
-                                                
+                            
+                            console.log('----- START : ' + startHour + '-' + endHour + ' Module : ' + module);
                             var embed  = new Discord.RichEmbed()
                                 .setTitle('\n:calendar_spiral: ' + startHour + '-' + endHour)
                                 .setDescription(module)
@@ -135,7 +139,3 @@ module.exports = {
     }
 };
 
-function howManyDaysMore(str){
-
-    return str.length;
-}

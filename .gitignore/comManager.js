@@ -27,7 +27,9 @@ function Command(message){
     // SI UN GROUPE SPECIFIQUE A ETE DONNE :
     if(this.arg1 === 'A' || this.arg1 === 'B' || this.arg1 === 'C' || this.arg1 === 'D' || this.arg1 === 'E' || this.arg1 === 'A2' || this.arg1 === 'B2' || this.arg1 === 'C2'){
 
-        console.log("UN GROUPE EST CHOISI");
+        console.log("----- Un groupe a été choisi : " + this.arg1);
+        console.log("----- Attribution d'un URL .ics");
+
         this.grp = this.arg1 == 'A' ? grpA : 
                         this.arg1 == 'B' ? grpB :
                             this.arg1 == 'C' ? grpC :
@@ -35,7 +37,9 @@ function Command(message){
                                     this.arg1 == 'E' ? grpE :
                                         this.arg1 == 'A2' ? grpA2 : 
                                             this.arg1 == 'B2' ? grpB2 :
-                                                this.arg1 == 'C2' ? grpC2 : ''; 
+                                                this.arg1 == 'C2' ? grpC2 : '';
+    
+        console.log('----- URL donnée : ' + this.grp);
     }
     else //SI AUCUN GROUPE PRECISE, IL FAUT CHERCHER UN ROLE :
     {
@@ -79,9 +83,9 @@ function Command(message){
         });
 
         this.grp = url;
+        console.log('GROUPE trouvé selon un role : ' + this.grp);
     }
 
-    console.log('GROUPE : ' + this.grp);
 }
 
 
