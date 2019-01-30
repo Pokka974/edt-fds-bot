@@ -14,7 +14,7 @@ module.exports = {
 
             let day = today.toString().split(' ');
 
-            let courseFounded = false;
+            let courseFound = false;
 
             ical.fromURL(url, {}, function(err, data) {
 
@@ -28,13 +28,14 @@ module.exports = {
 
                         if(todayString === iDate){ //Si il trouve un Edt pour le jour sélectionné
                             
+                            console.log('EV.START : ' + ev.start);
                             console.log('----- Un cours a été trouvé !');
-                            courseFounded = true;
-                            let start = ev.start.toDateString().split('GMT')[0];
-                            let startHour = ev.start.toString().split(' ')[4];
+                            courseFound = true;
+                            //let start = ev.start.toDateString().split('GMT')[0];
+                            const startHour = ev.start.toString().split(' ')[4];
 
-                            let end = ev.end.toDateString().split('GMT')[0];
-                            let endHour = ev.end.toString().split(' ')[4];
+                            //let end = ev.end.toDateString().split('GMT')[0];
+                            const endHour = ev.end.toString().split(' ')[4];
 
                             let module = ev.summary.toString().split(' ')[0];
                             let salle = ev.location;
@@ -55,7 +56,7 @@ module.exports = {
                     }
                 }
 
-                if(!courseFounded){
+                if(!courseFound){
                     let embed = new Discord.RichEmbed()
                             .setTitle('\n:calendar_spiral: ' + day[0] + ' ' + day[1] + ' ' + day[2]+'**')
                             .addField('No Results', 'Aucun cours trouvé pour la date indiquée et le groupe indiqué')
@@ -86,7 +87,7 @@ module.exports = {
             console.log('-----> ' + todayString);
 
             let day = today.toString().split(' ');
-            let courseFounded = false;
+            let courseFound = false;
             ical.fromURL(url, {}, function(err, data) {
 
                 for (var k in data){
@@ -97,12 +98,12 @@ module.exports = {
                         var iDate = months[ev.start.getMonth()] + ' ' + ev.start.getDate() + ' 2019';
 
                         if(todayString === iDate){ //Si il trouve un Edt pour le jour sélectionné
-                            courseFounded = true;
-                            let start = ev.start.toDateString().split('GMT')[0];
-                            let startHour = ev.start.toString().split(' ')[4];
+                            courseFound = true;
+                            //let start = ev.start.toDateString().split('GMT')[0];
+                            const startHour = ev.start.toString().split(' ')[4];
 
-                            let end = ev.end.toDateString().split('GMT')[0];
-                            let endHour = ev.end.toString().split(' ')[4];
+                            //let end = ev.end.toDateString().split('GMT')[0];
+                            const endHour = ev.end.toString().split(' ')[4];
 
                             let module = ev.summary.toString().split(' ')[0];
                             let salle = ev.location;
@@ -122,7 +123,7 @@ module.exports = {
                     }
                 }
 
-                if(!courseFounded){
+                if(!courseFound){
                     let embed = new Discord.RichEmbed()
                             .setTitle('\n:calendar_spiral: ' + day[0] + ' ' + day[1] + ' ' + day[2]+'**')
                             .addField('No Results', 'Aucun cours trouvé pour la date indiquée et le groupe indiqué')
